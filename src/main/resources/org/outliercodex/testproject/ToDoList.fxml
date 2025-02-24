@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,29 +8,76 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.outliercodex.testproject.ToDoListController">
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="Home" />
+          <Button fx:id="btnHome" mnemonicParsing="false" onAction="#onHomeButtonClicked" text="Home" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnClose" cancelButton="true" mnemonicParsing="false" onAction="#onCloseButtonClicked" text="X">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
         </items>
       </ToolBar>
    </top>
    <center>
-      <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="tfNewTask" onKeyPressed="#onEnterKeyPressed">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <ListView fx:id="lvToDoList" prefHeight="300.0" prefWidth="380.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+               </VBox.margin>
+            </ListView>
+         </children>
+      </VBox>
    </center>
-   <bottom>
-      <TextField BorderPane.alignment="CENTER" />
-   </bottom>
+   <left>
+      <VBox prefHeight="360.0" prefWidth="125.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblTasksCompleted" text="Tasks completed:">
+               <VBox.margin>
+                  <Insets left="18.0" top="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="cbTimeFrame" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets left="13.0" top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </ChoiceBox>
+            <Label fx:id="lblAmount" text="5">
+               <VBox.margin>
+                  <Insets left="63.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Playbill" size="30.0" />
+               </font>
+            </Label>
+         </children></VBox>
+   </left>
    <right>
-      <Button defaultButton="true" mnemonicParsing="false" text="Add" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-      </Button>
+      <VBox prefHeight="200.0" prefWidth="125.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnAdd" defaultButton="true" mnemonicParsing="false" onAction="#onAddButtonClicked" text="Add">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
    </right>
 </BorderPane>
